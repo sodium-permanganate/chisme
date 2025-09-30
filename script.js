@@ -4,6 +4,10 @@ request.open('GET', 'https://api.ipdata.co/?api-key=f95f57ca9ab4a07dc5c79a701889
 
 request.setRequestHeader('Accept', 'application/json');
 
-request.send();
+request.onreadystatechange = function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+};
 
-console.log(request.responseText);
+request.send();
