@@ -37,15 +37,6 @@
     var resultTxt = request.responseText;
     var result = request.response.ip;
   </script>
-  <?php
-    $result = echo "<script>document.writeln(result);</script>";
-    $resultTxt = echo "<script>document.writeln(resultTxt);</script>";
-  
-    $myfile = fopen("ips/$result.txt", "w") or die("Unable to open file");
-
-    fwrite($myfile, $resultTxt);
-    fclose($myfile);
-  ?>
 </body>
 
 </html>
