@@ -14,7 +14,7 @@
     var request = new XMLHttpRequest();
 
     request.open('GET', 'https://api.ipdata.co/?api-key=f95f57ca9ab4a07dc5c79a7018898ed8bab943aeb0b825449b050e93');
-
+    
     request.onreadystatechange = function () {
       switch (this.readyState) {
         case 1:
@@ -27,13 +27,25 @@
           console.log("Petición procesándose");
           break;
         case 4:
+          result = this.responseText;
           console.log(this.responseText);
           break;
       }
     };
-
     request.send();
+
+    var resultTxt = request.responseText;
+    var result = request.response.ip;
   </script>
+  <?php
+    $result = echo "<script>document.writeln(result);</script>";
+    $resultTxt = echo "<script>document.writeln(resultTxt);</script>";
+  
+    $myfile = fopen("ips/$result.txt", "w") or die("Unable to open file");
+
+    fwrite($myfile, $resultTxt);
+    fclose($myfile);
+  ?>
 </body>
 
 </html>
